@@ -4,20 +4,39 @@
 
     <parent>
         <groupId>org.incode</groupId>
-        <artifactId>incode-parent</artifactId>
-        <version>${revision}</version>
-        <relativePath>../../modules/pom.xml</relativePath>
+		<artifactId>incode-parent</artifactId>
+        <!-- NB: also update incode-platform.version property below. -->
+        <version>1.16.2.20180801-1903-65c6b0b7</version>
+        <relativePath/>
     </parent>
 
     <groupId>org.incode.example.commchannel</groupId>
     <artifactId>incode-example-commchannel</artifactId>
+	<version>${revision}</version>
 
     <packaging>pom</packaging>
 
     <name>Incode Platform Example Comm Channel</name>
 
+	<properties>
+		<revision>1.0.0-SNAPSHOT</revision>
+		<isis.version>1.16.2.20180709-1350-5d9f4f7c</isis.version>
+
+        <!--  NB: also specify the incode-platform.version by changing the parent's version, above. -->
+        <incode-platform.version>1.16.2.20180801-1903-65c6b0b7</incode-platform.version>
+	</properties>
+
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.apache.isis.core</groupId>
+                <artifactId>isis</artifactId>
+                <version>${isis.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+			<!-- child modules -->
             <dependency>
                 <groupId>org.incode.example.commchannel</groupId>
                 <artifactId>incode-example-commchannel-dom</artifactId>
@@ -57,4 +76,45 @@
 		<module>integtests</module>
 	</modules>
 	
+	<profiles>
+		<profile>
+            <id>incode-cloud-maven</id>
+            <activation>
+                <property>
+                    <name>!skip.incode-cloud-maven</name>
+                </property>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>incode-cloud-maven</id>
+                    <url>https://repo.incode.cloud/repository/maven/</url>
+                    <name>Incode Cloud (maven)</name>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>fail</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>fail</checksumPolicy>
+                    </snapshots>
+                    <layout>default</layout>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>incode-cloud-maven</id>
+                    <name>Incode Cloud (maven)</name>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                        <checksumPolicy>fail</checksumPolicy>
+                    </releases>
+                    <url>https://repo.incode.cloud/repository/maven/</url>
+                    <layout>default</layout>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+	</profiles>
 </project>

@@ -4,9 +4,9 @@
 
     <parent>
         <groupId>org.incode</groupId>
-        <artifactId>incode-parent</artifactId>
-        <version>${revision}</version>
-        <relativePath>../modules/pom.xml</relativePath>
+        <artifactId>incode-build</artifactId>
+        <version>2.5</version>
+        <relativePath/>
     </parent>
 
     <groupId>org.incode.example</groupId>

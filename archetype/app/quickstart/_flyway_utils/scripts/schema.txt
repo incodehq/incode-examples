@@ -1,8 +1,0 @@
-dbo
-incodeDocuments
-incodeClassification
-isisaudit
-isiscommand
-isispublishmq
-isissecurity
-isissessionlogger
