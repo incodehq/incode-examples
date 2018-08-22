@@ -99,6 +99,13 @@
             <type>pom</type>
         </dependency>
 
+        <dependency>
+            <!-- seems to be required by shiro ? -->
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
         <!-- test -->
         <dependency>
             <groupId>org.apache.isis.mavendeps</groupId>
