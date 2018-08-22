@@ -21,6 +21,10 @@
         Aggregator POM for all of the Incode Examples for Apache Isis
     </description>
 
+    <properties>
+        <revision>1.0.0-SNAPSHOT</revision>
+    </properties>
+
     <profiles>
         <profile>
             <id>default</id>
@@ -30,7 +34,6 @@
                 </property>
             </activation>
             <modules>
-                <module>module-examples</module>
                 <module>webapp</module>
             </modules>
         </profile>
@@ -51,13 +54,7 @@
                 <module>module-examples/docfragment</module>
                 <module>module-examples/document</module>
                 <module>module-examples/note</module>
-                <module>module-examples/settings</module>
                 <module>module-examples/tags</module>
-                <module>modules/spi/audit</module>
-                <module>modules/spi/command</module>
-                <module>modules/spi/publishmq/jdo</module>
-                <module>modules/spi/security</module>
-                <module>modules/spi/sessionlogger</module>
             </modules>
         </profile>
 	</profiles>

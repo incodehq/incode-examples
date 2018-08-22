@@ -11,6 +11,7 @@
 
     <groupId>org.incode.example</groupId>
     <artifactId>incode-example</artifactId>
+	<version>${revision}</version>
 
     <packaging>pom</packaging>
 
@@ -23,6 +24,48 @@
     <properties>
         <revision>1.0.0-SNAPSHOT</revision>
     </properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+				<version>1.0.0</version>
+				<executions>
+					<execution>
+						<id>flatten</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>flatten</goal>
+						</goals>
+						<configuration>
+							<flattenMode>bom</flattenMode>
+							<updatePomFile>true</updatePomFile>
+							<pomElements>
+								<parent>resolve</parent>
+								<name>resolve</name>
+								<description>resolve</description>
+								<url>resolve</url>
+								<scm>resolve</scm>
+								<developers>resolve</developers>
+								<properties>resolve</properties>
+								<dependencyManagement>resolve</dependencyManagement>
+								<dependencies>resolve</dependencies>
+								<profiles>resolve</profiles>
+							</pomElements>
+						</configuration>
+					</execution>
+					<execution>
+						<id>flatten.clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 	<dependencyManagement>
 		<dependencies>
@@ -113,7 +156,6 @@
 		<module>docrendering-xdocreport</module>
 		<module>document</module>
 		<module>note</module>
-		<module>settings</module>
 		<module>tags</module>
 	</modules>
 	

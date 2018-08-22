@@ -3,52 +3,11 @@
     xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
-    <display-name>Incode Platform Extended App</display-name>
+    <display-name>Incode Platform Examples App</display-name>
 
     <welcome-file-list>
         <welcome-file>about/index.html</welcome-file>
     </welcome-file-list>
-
-
-    <listener>
-        <listener-class>org.incode.domainapp.extended.webapp.spring.CustomSpringContextLoaderListener</listener-class>
-    </listener>
-
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>
-            classpath:activemq-config.xml,
-            classpath:example-embeddedcamel-config.xml,
-            classpath:propertyPlaceholderConfigurer-config.xml
-        </param-value>
-    </context-param>
-
-
-    <context-param>
-        <param-name>spring.config.file</param-name>
-        <param-value>classpath:spring.properties</param-value>
-    </context-param>
-
-
-    <servlet>
-        <servlet-name>jolokia-agent</servlet-name>
-        <servlet-class>org.jolokia.http.AgentServlet</servlet-class>
-        <init-param>
-            <param-name>discoveryEnabled</param-name>
-            <param-value>false</param-value>
-        </init-param>
-        <init-param>
-            <param-name>agentDescription</param-name>
-            <param-value>Apache ActiveMQ</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>jolokia-agent</servlet-name>
-        <url-pattern>/api/jolokia/*</url-pattern>
-    </servlet-mapping>
-
 
 
     <!-- shiro security configuration -->
@@ -109,33 +68,7 @@
     </context-param>
 
 
-    <!-- bootstrap Togglz -->
-    <context-param>
-        <param-name>org.togglz.FEATURE_MANAGER_PROVIDED</param-name>
-        <!-- prevent the filter from bootstrapping so is done lazily later once Isis has itself bootstrapped -->
-        <param-value>true</param-value>
-    </context-param>
-
-    <filter>
-        <filter-name>TogglzFilter</filter-name>
-        <filter-class>org.togglz.servlet.TogglzFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>TogglzFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-    <!-- enable the togglz console (for FeatureToggleService) -->
-    <servlet>
-        <servlet-name>TogglzConsoleServlet</servlet-name>
-        <servlet-class>org.togglz.console.TogglzConsoleServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>TogglzConsoleServlet</servlet-name>
-        <url-pattern>/togglz/*</url-pattern>
-    </servlet-mapping>
-
-    <!-- 
+    <!--
     for diagnostics
     -->
     <filter>
@@ -267,7 +200,7 @@
         <filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
         <init-param>
             <param-name>applicationClassName</param-name>
-            <param-value>org.incode.domainapp.extended.webapp.DomainAppWicketApplication</param-value>
+            <param-value>org.incode.examplesapp.webapp.ExamplesAppWicketApplication</param-value>
         </init-param>
     </filter>
     <filter-mapping>
@@ -400,22 +333,5 @@
     </resource-ref>
      -->
 
-    <servlet>
-        <servlet-name>QuartzInitializer</servlet-name>
-        <servlet-class>org.quartz.ee.servlet.QuartzInitializerServlet</servlet-class>
-        <init-param>
-            <param-name>config-file</param-name>
-            <param-value>org/incode/domainapp/extended/webapp/quartz/quartz.properties</param-value>
-        </init-param>
-        <init-param>
-            <param-name>shutdown-on-unload</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <init-param>
-            <param-name>start-scheduler-on-load</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
 
 </web-app>

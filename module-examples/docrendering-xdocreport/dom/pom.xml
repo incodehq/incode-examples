@@ -53,9 +53,6 @@
 
     <properties>
         <jar-plugin.automaticModuleName>org.incode.example.docrendering.xdocreport</jar-plugin.automaticModuleName>
-        <git-plugin.propertiesDir>org/incode/example/docrendering/xdocreport</git-plugin.propertiesDir>
-
-        <git-plugin.gitDir>${project.basedir}/../../../../.git</git-plugin.gitDir>
     </properties>
 
     <build>
@@ -135,24 +132,5 @@
         </dependency>
 
     </dependencies>
-
-    <profiles>
-        <profile>
-            <id>git</id>
-            <activation>
-                <property>
-                    <name>!skip.git</name>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>pl.project13.maven</groupId>
-                        <artifactId>git-commit-id-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
 </project>

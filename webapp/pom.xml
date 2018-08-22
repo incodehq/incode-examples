@@ -25,6 +25,48 @@
         <jetty.version>9.4.3.v20170317</jetty.version>
     </properties>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                        <configuration>
+                            <flattenMode>bom</flattenMode>
+                            <updatePomFile>true</updatePomFile>
+                            <pomElements>
+                                <parent>resolve</parent>
+                                <name>resolve</name>
+                                <description>resolve</description>
+                                <url>resolve</url>
+                                <scm>resolve</scm>
+                                <developers>resolve</developers>
+                                <properties>resolve</properties>
+                                <dependencyManagement>resolve</dependencyManagement>
+                                <dependencies>resolve</dependencies>
+                                <profiles>resolve</profiles>
+                            </pomElements>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
     <packaging>pom</packaging>
 
     <dependencyManagement>
@@ -119,14 +161,6 @@
             </dependency>
 
             <dependency>
-                <groupId>org.incode.example.settings</groupId>
-                <artifactId>incode-example-settings</artifactId>
-                <version>${revision}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
                 <groupId>org.incode.example.tags</groupId>
                 <artifactId>incode-example-tags</artifactId>
                 <version>${revision}</version>
@@ -182,7 +216,6 @@
                 <module>../module-examples/document/dom</module>
                 <module>../module-examples/note/demo</module>
                 <module>../module-examples/note/dom</module>
-                <module>../module-examples/settings/dom</module>
                 <module>../module-examples/tags/dom</module>
                 <module>../module-examples/tags/demo</module>
             </modules>
@@ -199,8 +232,6 @@
                 <module>appdefn</module>
                 <module>../module-examples</module>
                 <module>webapp</module>
-
-                <module>main-slack</module>
             </modules>
         </profile>
 
